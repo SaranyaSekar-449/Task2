@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="login.css">
+    <script src="https://kit.fontawesome.com/59784df54a.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+    <header class="git_logo text-center">
+        <i class="fa-brands fa-github logo"></i>
+        <h1 class="title">Sign in to GitHub</h1>
+    </header>
+
+    <div class="container-fluid mt-4 text-center" ng-app="myApp">
+        <div class="login-wrapper mx-auto">
+            <form ng-submit="login()" ng-controller="myCtrl" name="myForm" novalidate>
+                <div class="input-box">
+                    <div class="input-label">Username</div>
+                    <input type="email" name="email" ng-model="email" required>
+                    <span style="color: red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                        <span ng-show="myForm.email.$error.required">Email is required</span>
+                        <span ng-show="myForm.email.$error.email">Invalid email address</span>
+                    </span>
+                </div>
+
+                <div class="input-box">
+                    <div class="input-label">
+                        <span>Password</span>
+                        <a href="#" style="text-decoration: none;">Forgot password?</a>
+                    </div>
+                    <input type="password" name="password" ng-model="password" required>
+                    <span style="color: red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+                        <span ng-show="myForm.password.$error.required">Password is required</span>
+                    </span>
+                </div>
+                <button class="submit-btn" type="submit" ng-disabled="myForm.$invalid">
+                    Submit
+                </button>
+            </form>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <div class="info text-center">
+                        <span>New to GitHub? <a href="#" style="text-decoration: none;">Use Token</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope) {
+            $scope.email = '';
+            $scope.password = '';
+            $scope.login = function() {
+                console.log('Email: ' + $scope.email);
+                console.log('Password: ' + $scope.password);
+            };
+        });
+    </script>
+</body>
+</html>
